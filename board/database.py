@@ -1,5 +1,6 @@
 import sqlite3
 import click
+import psycopg2
 from flask import current_app, g
 
 def init_app(app):
@@ -31,3 +32,6 @@ def close_db(e=None):
 	if db is not None:
 		db.close()
 
+def get_pg_db_conn():
+	conn = psycopg2.connect(host="localhost", database="flask_db",user="admin", password="P455W0RD", port="5432")
+	return conn
